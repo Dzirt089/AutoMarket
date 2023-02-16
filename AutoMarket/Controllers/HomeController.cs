@@ -1,4 +1,5 @@
-﻿using AutoMarket.Models;
+﻿using AutoMarket.Domain.Entity;
+using AutoMarket.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -20,6 +21,10 @@ namespace AutoMarket.Controllers
 
         public IActionResult Index()
         {
+            Car car = new Car() 
+            {
+                
+            };
             return View();
         }
 
