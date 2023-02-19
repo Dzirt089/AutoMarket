@@ -18,29 +18,33 @@ namespace AutoMarket.DAL.Repositories
             _context = context;
         }
 
-        public bool Create(Car entity)
+        public async Task<bool> Create(Car entity)
         {
-            throw new NotImplementedException();
+            await _context.Car.AddAsync(entity);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
         public bool Delete(Car entity)
         {
-            throw new NotImplementedException();
+            _context.Remove(entity);
+            _context.SaveChanges();
+            return true;
         }
 
-        public Car Get(int id)
+        public async Task<Car> Get(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Car.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public Task<List<Car>> GetAll()
+        public async Task<List<Car>> GetAll()
         {
-            return _context.Car.ToListAsync();
+            return await _context.Car.ToListAsync();
         }
 
-        public Car GetByName(string name)
+        public Task <Car> GetByName(string name)
         {
-            throw new NotImplementedException();
+            return _context.Car.FirstOrDefaultAsync(x => x.Name == name);
         }
     }
 }

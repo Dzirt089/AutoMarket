@@ -20,11 +20,7 @@ namespace AutoMarket.Controllers
         }
 
         public IActionResult Index()
-        {
-            Car car = new Car() 
-            {
-                
-            };
+        {          
             return View();
         }
 

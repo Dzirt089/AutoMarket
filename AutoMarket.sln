@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoMarket.Domain", "AutoMa
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{5DA11F93-3017-40CA-AD5E-69B58B00C0CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMarket.DAL", "AutoMarket.DAL\AutoMarket.DAL.csproj", "{188023E7-2519-422A-9DD9-28BC86A18DA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoMarket.DAL", "AutoMarket.DAL\AutoMarket.DAL.csproj", "{188023E7-2519-422A-9DD9-28BC86A18DA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
