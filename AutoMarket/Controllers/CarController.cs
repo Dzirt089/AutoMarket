@@ -22,7 +22,6 @@ namespace AutoMarket.Controllers
 
             var car = new Car()
             {
-                Id = 4,
                 Name = "Vaz21114",
                 Model = "Vaz",
                 Speed = 140,
