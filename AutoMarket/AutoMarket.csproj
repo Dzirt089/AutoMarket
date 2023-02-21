@@ -12,6 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AutoMarket.DAL\AutoMarket.DAL.csproj" />
     <ProjectReference Include="..\AutoMarket.Domain\AutoMarket.Domain.csproj" />
+    <ProjectReference Include="..\AutoMarket.Service\AutoMarket.Service.csproj" />
   </ItemGroup>
 
 </Project>
