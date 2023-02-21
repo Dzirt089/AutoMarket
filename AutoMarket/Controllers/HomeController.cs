@@ -1,12 +1,7 @@
-﻿using AutoMarket.Domain.Entity;
-using AutoMarket.Models;
+﻿using AutoMarket.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AutoMarket.Controllers
 {
@@ -20,7 +15,7 @@ namespace AutoMarket.Controllers
         }
 
         public IActionResult Index()
-        {          
+        {
             return View();
         }
 

@@ -1,6 +1,4 @@
-﻿using AutoMarket.DAL.Interfaces;
-using AutoMarket.Domain.Entity;
-using AutoMarket.Service.Interfaces;
+﻿using AutoMarket.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -17,9 +15,9 @@ namespace AutoMarket.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetCars()
-        {    
+        {
             var response = await _carService.GetCars();
-           
+
             return View(response.Data);
         }
     }

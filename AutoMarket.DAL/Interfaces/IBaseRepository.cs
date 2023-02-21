@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using AutoMarket.Domain.Enum;
 
 namespace AutoMarket.DAL.Interfaces
 {
     public interface IBaseRepository<T>
     {
-        Task <bool> Create(T entity);
+        Task<bool> Create(T entity);
 
         Task<T> Get(int id);
 
-        Task <List<T>> GetAll();
+        Task<List<T>> GetAll();
 
         bool Delete(T entity);
     }

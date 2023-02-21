@@ -1,10 +1,7 @@
 ﻿using AutoMarket.DAL.Interfaces;
 using AutoMarket.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AutoMarket.DAL.Repositories
@@ -42,7 +39,7 @@ namespace AutoMarket.DAL.Repositories
             return await _context.Car.ToListAsync();
         }
 
-        public Task <Car> GetByName(string name)
+        public Task<Car> GetByName(string name)
         {
             return _context.Car.FirstOrDefaultAsync(x => x.Name == name);
         }

@@ -3,11 +3,6 @@ using AutoMarket.Domain.Entity;
 using AutoMarket.Domain.Enum;
 using AutoMarket.Domain.Response;
 using AutoMarket.Service.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AutoMarket.Service.Implementations
 {
@@ -26,7 +21,7 @@ namespace AutoMarket.Service.Implementations
             try
             {
                 var cars = await _carRepository.GetAll();
-                if(cars.Count == 0)
+                if (cars.Count == 0)
                 {
                     baseResponse.Description = "Найдено 0 элементов";
                     baseResponse.StatusCode = StatusCode.OK;
@@ -37,10 +32,10 @@ namespace AutoMarket.Service.Implementations
 
                 return baseResponse;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                return new BaseResponse<IEnumerable<Car>>() { Description = $"[GetCars] : {ex.Message}"};
-                
+                return new BaseResponse<IEnumerable<Car>>() { Description = $"[GetCars] : {ex.Message}" };
+
             }
         }
     }

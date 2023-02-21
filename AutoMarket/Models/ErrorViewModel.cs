@@ -1,5 +1,3 @@
-using System;
-
 namespace AutoMarket.Models
 {
     public class ErrorViewModel
