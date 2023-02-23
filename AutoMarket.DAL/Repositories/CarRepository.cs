@@ -22,7 +22,7 @@ namespace AutoMarket.DAL.Repositories
             return true;
         }
 
-        public bool Delete(Car entity)
+        public async Task<bool> Delete(Car entity)
         {
             _context.Remove(entity);
             _context.SaveChanges();
