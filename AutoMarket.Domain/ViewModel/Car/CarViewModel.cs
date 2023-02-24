@@ -9,6 +9,7 @@ namespace AutoMarket.Domain.ViewModel.Car
 {
     public class CarViewModel
     {
+        public int id { get; set; }
         public string Name { get; set; }
 
         public string Description { get; set; }

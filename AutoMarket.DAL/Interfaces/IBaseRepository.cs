@@ -12,5 +12,7 @@ namespace AutoMarket.DAL.Interfaces
         Task<List<T>> GetAll();
 
         Task<bool> Delete(T entity);
+
+        Task<T> Update(T entity);
     }
 }
