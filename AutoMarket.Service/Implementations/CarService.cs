@@ -107,6 +107,7 @@ namespace AutoMarket.Service.Implementations
                     return baseResponse;
                 }
                 baseResponse.Data = car;
+                baseResponse.StatusCode = StatusCode.OK;
                 return baseResponse;
             }
             catch (Exception ex)

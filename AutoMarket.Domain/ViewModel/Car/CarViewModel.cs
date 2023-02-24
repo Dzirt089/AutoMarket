@@ -1,4 +1,5 @@
 ﻿using AutoMarket.Domain.Enum;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace AutoMarket.Domain.ViewModel.Car
 {
     public class CarViewModel
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
 
         public string Description { get; set; }
@@ -22,5 +23,6 @@ namespace AutoMarket.Domain.ViewModel.Car
         public DateTime DateCreate { get; set; }
 
         public string TypeCar { get; set; }
+        public IFormFile Avatar { get; set; }
     }
 }

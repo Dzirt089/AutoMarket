@@ -71,13 +71,13 @@ namespace AutoMarket.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (model.id == 0)
+                if (model.Id == 0)
                 {
                     await _carService.CreateCar(model);
                 }
                 else
                 {
-                    await _carService.Edit(model.id,model);
+                    await _carService.Edit(model.Id,model);
                 }
             }
             return RedirectToAction("GetCars");
