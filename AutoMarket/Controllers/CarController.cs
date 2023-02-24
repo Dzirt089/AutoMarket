@@ -2,6 +2,7 @@
 using AutoMarket.Service.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AutoMarket.Controllers
@@ -21,7 +22,7 @@ namespace AutoMarket.Controllers
             var response = await _carService.GetCars();
             if (response.StatusCode == Domain.Enum.StatusCode.OK)
             {
-                return View(response.Data);
+                return View(response.Data.ToList());
             }
 
             return RedirectToAction("Error");
