@@ -2,6 +2,7 @@
 using AutoMarket.Service.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -69,11 +70,17 @@ namespace AutoMarket.Controllers
         [HttpPost]
         public async Task<IActionResult> Save (CarViewModel model)
         {
+            ModelState.Remove("DataCreate");
             if (ModelState.IsValid)
             {
                 if (model.Id == 0)
                 {
-                    await _carService.CreateCar(model);
+                    byte[] imageData;
+                    using (var binaryReader = new BinaryReader(model.Avatar.OpenReadStream()))
+                    {
+                        imageData = binaryReader.ReadBytes((int)model.Avatar.Length);
+                    }
+                        await _carService.CreateCar(model,imageData);
                 }
                 else
                 {

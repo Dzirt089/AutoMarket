@@ -17,6 +17,7 @@ namespace AutoMarket.Domain.Entity
 
         public decimal Price { get; set; }
         public DateTime DateCreate { get; set; }
+        public byte[]? Avatar { get; set; }
 
         public TypeCar TypeCar { get; set; }
     }

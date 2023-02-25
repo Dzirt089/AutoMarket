@@ -29,8 +29,11 @@ namespace AutoMarket
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connection));
-            services.AddScoped<ICarRepository, CarRepository>();
-            services.AddScoped<ICarService, CarService>();
+
+
+            services.InitializeRepositories();
+            services.InitializeServices();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

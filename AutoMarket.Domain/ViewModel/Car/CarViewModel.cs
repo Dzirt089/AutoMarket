@@ -21,7 +21,7 @@ namespace AutoMarket.Domain.ViewModel.Car
 
         public decimal Price { get; set; }
         public DateTime DateCreate { get; set; }
-
+        public byte[]? Image { get; set; }
         public string TypeCar { get; set; }
         public IFormFile Avatar { get; set; }
     }

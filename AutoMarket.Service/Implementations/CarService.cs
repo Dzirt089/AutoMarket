@@ -4,19 +4,21 @@ using AutoMarket.Domain.Enum;
 using AutoMarket.Domain.Response;
 using AutoMarket.Domain.ViewModel.Car;
 using AutoMarket.Service.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System.Xml.Linq;
 
 namespace AutoMarket.Service.Implementations
 {
     public class CarService : ICarService
     {
-        private readonly ICarRepository _carRepository;
+        private readonly IBaseRepository<Car> _carRepository;
 
-        public CarService(ICarRepository carRepository)
+        public CarService(IBaseRepository<Car> carRepository)
         {
             _carRepository = carRepository;
         }
 
-        public async Task<IBaseResponse<CarViewModel>> CreateCar(CarViewModel carViewModel)
+        public async Task<IBaseResponse<CarViewModel>> CreateCar(CarViewModel carViewModel, byte[] imageData)
         {
             try
             {
@@ -54,7 +56,7 @@ namespace AutoMarket.Service.Implementations
             var baseResponse = new BaseResponse<bool>() { Data = true };
             try
             {
-                var car = await _carRepository.Get(id);
+                var car = await _carRepository.GetAll().FirstOrDefaultAsync(x => x.Id==id);
                 if (car == null)
                 {
                     baseResponse.Description = "User not found";
@@ -77,7 +79,7 @@ namespace AutoMarket.Service.Implementations
             var baseResponse = new BaseResponse<Car>();
             try
             {
-                var car = await _carRepository.GetByName(name);
+                var car = await _carRepository.GetAll().FirstOrDefaultAsync(x=>x.Name == name);
                 if (car == null)
                 {
                     baseResponse.Description = "User not found";
@@ -99,7 +101,7 @@ namespace AutoMarket.Service.Implementations
             var baseResponse = new BaseResponse<Car>();
             try
             {
-                var car = await _carRepository.Get(id);
+                var car = await _carRepository.GetAll().FirstOrDefaultAsync(x => x.Id == id);
                 if (car == null)
                 {
                     baseResponse.Description = "User not found";
@@ -121,7 +123,7 @@ namespace AutoMarket.Service.Implementations
             var baseResponse = new BaseResponse<IEnumerable<Car>>();
             try
             {
-                var cars = await _carRepository.GetAll();
+                var cars = await _carRepository.GetAll().ToListAsync();
                 if (cars.Count == 0)
                 {
                     baseResponse.Description = "Найдено 0 элементов";
@@ -145,7 +147,7 @@ namespace AutoMarket.Service.Implementations
             var baseResponse = new BaseResponse<Car>();
             try
             {
-                var car = await _carRepository.Get(id);
+                var car = await _carRepository.GetAll().FirstOrDefaultAsync(x=>x.Id==id);
                 if (car == null)
                 {
                     baseResponse.Description = "Car not found";

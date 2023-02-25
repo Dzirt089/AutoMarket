@@ -1,12 +1,12 @@
 ﻿using AutoMarket.DAL.Interfaces;
 using AutoMarket.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AutoMarket.DAL.Repositories
 {
-    public class CarRepository : ICarRepository
+    public class CarRepository : IBaseRepository<Car>
     {
         private readonly ApplicationDbContext _context;
 
@@ -34,14 +34,10 @@ namespace AutoMarket.DAL.Repositories
             return await _context.Car.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<List<Car>> GetAll()
-        {
-            return await _context.Car.ToListAsync();
-        }
 
-        public Task<Car> GetByName(string name)
+        public async Task<Car> GetByName(string name)
         {
-            return _context.Car.FirstOrDefaultAsync(x => x.Name == name);
+            return await _context.Car.FirstOrDefaultAsync(x => x.Name == name);
         }
 
         public async Task<Car> Update(Car entity)
@@ -49,6 +45,11 @@ namespace AutoMarket.DAL.Repositories
             _context.Update(entity);
             await _context.SaveChangesAsync();
             return entity;
+        }
+
+        IQueryable<Car> IBaseRepository<Car>.GetAll()
+        {
+            return (IQueryable<Car>)_context.Car.ToListAsync();
         }
     }
 }
