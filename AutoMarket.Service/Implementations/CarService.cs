@@ -18,7 +18,9 @@ namespace AutoMarket.Service.Implementations
             _carRepository = carRepository;
         }
 
-        public async Task<IBaseResponse<CarViewModel>> CreateCar(CarViewModel carViewModel, byte[] imageData)
+      
+
+        public async Task<IBaseResponse<Car>> CreateCar(CarViewModel carViewModel, byte[] imageData)
         {
             try
             {
@@ -33,15 +35,15 @@ namespace AutoMarket.Service.Implementations
                     TypeCar = (TypeCar)Convert.ToInt32(carViewModel.TypeCar)
                 };
                 await _carRepository.Create(car);
-                return new BaseResponse<CarViewModel>()
+                return new BaseResponse<Car>()
                 {
                     StatusCode = StatusCode.OK,
-                    //Data = car
+                    Data = car
                 };
             }
             catch (Exception ex)
             {
-                return new BaseResponse<CarViewModel>()
+                return new BaseResponse<Car>()
                 {
                     Description = $"[CreateCar] : {ex.Message}",
                     StatusCode = StatusCode.InternalServerError
@@ -168,6 +170,29 @@ namespace AutoMarket.Service.Implementations
             catch (Exception ex)
             {
                 return new BaseResponse<Car>() { Description = $"[Edit] : {ex.Message}", StatusCode = StatusCode.InternalServerError };
+            }
+        }
+
+        public BaseResponse<Dictionary<int, string>> GetTypes()
+        {
+            try
+            {
+                var types = ((TypeCar[]) Enum.GetValues(typeof(TypeCar)))
+                    .ToDictionary(k=>(int)k,t=>t.GetType().ToString());
+
+                return new BaseResponse<Dictionary<int, string>>()
+                {
+                    Data = types,
+                    StatusCode = StatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<Dictionary<int, string>>()
+                {
+                    Description = ex.Message,
+                    StatusCode = StatusCode.InternalServerError
+                };
             }
         }
     }

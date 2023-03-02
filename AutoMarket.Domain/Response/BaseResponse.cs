@@ -14,5 +14,6 @@ namespace AutoMarket.Domain.Response
     {
         T Data { get; }
         StatusCode StatusCode { get; }
+        string Description { get; }
     }
 }

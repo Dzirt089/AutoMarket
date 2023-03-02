@@ -90,7 +90,12 @@ namespace AutoMarket.Controllers
             return RedirectToAction("GetCars");
         }
 
-
+        [HttpPost]
+        public JsonResult GetTypes()
+        {
+            var types = _carService.GetTypes();
+            return Json(types);
+        }
 
     }
 }
