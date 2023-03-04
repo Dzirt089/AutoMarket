@@ -1,6 +1,7 @@
 ﻿using AutoMarket.Domain.Entity;
 using AutoMarket.Domain.Enum;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace AutoMarket.DAL
 {
@@ -40,6 +41,26 @@ namespace AutoMarket.DAL
                 builder.Property(x => x.Name).IsRequired().HasMaxLength(100);
                 builder.Property(x => x.Password).IsRequired();
 
+            });
+
+            modelBuilder.Entity<Car>(builder =>
+            {
+                builder.ToTable("Car").HasKey(x => x.Id);
+                builder.HasData(new Car[]
+                {
+                    new Car()
+                    {
+                        Id = 1,
+                        Name = "Germany AUTO",
+                        Description = "BMW X5",
+                        Model = "BMW X5",
+                        Speed = 280,
+                        Price = 5999000,
+                        DateCreate = DateTime.Now,
+                        Avatar = null,
+                        TypeCar = TypeCar.PassengerCar
+                    }
+                });
             });
         }
 
