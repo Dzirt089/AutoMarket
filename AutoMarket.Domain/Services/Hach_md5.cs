@@ -11,7 +11,7 @@ namespace AutoMarket.Services
         /// </summary>
         /// <param name="password"></param>
         /// <returns></returns>
-        public static string HashPassword(string password)
+        public static string HashPasswordMD5(string password)
         {
             MD5 md5 = MD5.Create();
             byte[] b = Encoding.ASCII.GetBytes(password);
@@ -31,7 +31,7 @@ namespace AutoMarket.Services
         /// </summary>
         /// <param name="password"></param>
         /// <returns></returns>
-        public static string hashPassword(string password)
+        public static string HashPassword(string password)
         {
             using(var sha256 = SHA256.Create())
             {

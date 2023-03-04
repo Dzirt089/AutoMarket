@@ -40,7 +40,7 @@ namespace AutoMarket.Service.Implementations
                 user = new User()
                 {
                     Name = model.Name,
-                    Password = Hach_md5.hashPassword(model.Password),
+                    Password = Hach_md5.HashPassword(model.Password),
                     //Role = (Role)Convert.ToInt32(model.Role),
                     Role = Enum.Parse<Role>(model.Role),
                 };

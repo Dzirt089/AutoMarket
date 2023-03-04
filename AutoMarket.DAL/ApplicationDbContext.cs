@@ -27,14 +27,14 @@ namespace AutoMarket.DAL
                     {
                         Id = 1,
                         Name = "Admin",
-                        Password = Hach_md5.hashPassword("123456"),
+                        Password = Hach_md5.HashPassword("123456"),
                         Role = Role.Admin
                     },
                     new User()
                     {
                         Id = 2,
                         Name = "Moderator",
-                        Password = Hach_md5.hashPassword("654321"),
+                        Password = Hach_md5.HashPassword("654321"),
                         Role = Role.Moderator
                     }
                 });
