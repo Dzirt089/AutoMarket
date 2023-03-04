@@ -5,6 +5,7 @@ using AutoMarket.Domain.Response;
 using AutoMarket.Domain.ViewModel.User;
 using AutoMarket.Service.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using AutoMarket.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +40,7 @@ namespace AutoMarket.Service.Implementations
                 user = new User()
                 {
                     Name = model.Name,
-                    Password = model.Password,
+                    Password = Hach_md5.hashPassword(model.Password),
                     //Role = (Role)Convert.ToInt32(model.Role),
                     Role = Enum.Parse<Role>(model.Role),
                 };

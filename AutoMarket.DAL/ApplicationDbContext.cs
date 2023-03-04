@@ -1,5 +1,6 @@
 ﻿using AutoMarket.Domain.Entity;
 using AutoMarket.Domain.Enum;
+using AutoMarket.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -26,14 +27,14 @@ namespace AutoMarket.DAL
                     {
                         Id = 1,
                         Name = "Admin",
-                        Password = "123456",
+                        Password = Hach_md5.hashPassword("123456"),
                         Role = Role.Admin
                     },
                     new User()
                     {
                         Id = 2,
                         Name = "Moderator",
-                        Password = "654321",
+                        Password = Hach_md5.hashPassword("654321"),
                         Role = Role.Moderator
                     }
                 });
@@ -52,7 +53,9 @@ namespace AutoMarket.DAL
                     {
                         Id = 1,
                         Name = "Germany AUTO",
-                        Description = "BMW X5",
+                        Description = @"Четвёртое поколение знаменитого среднеразмерного кроссовера BMW X5 немецкой компании BMW. 
+                                      Выпуск модели был начат в ноябре 2018 года в Европе. 
+                                      Одновременно с запуском новой модели с производства была снята предыдущая - F15",
                         Model = "BMW X5",
                         Speed = 280,
                         Price = 5999000,
