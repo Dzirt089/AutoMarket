@@ -6,12 +6,7 @@ using AutoMarket.Domain.ViewModel.Account;
 using AutoMarket.Service.Interfaces;
 using AutoMarket.Services;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AutoMarket.Service.Implementations
 {
@@ -20,7 +15,7 @@ namespace AutoMarket.Service.Implementations
         private readonly IAccountService _accountService;
         private readonly IBaseRepository<User> _userRepository;
 
-        public AccountService(IAccountService accountService,IBaseRepository<User> userRepository)
+        public AccountService(IAccountService accountService, IBaseRepository<User> userRepository)
         {
             _accountService = accountService;
             _userRepository = userRepository;
@@ -30,12 +25,12 @@ namespace AutoMarket.Service.Implementations
         {
             try
             {
-                var user = await _userRepository.GetAll().FirstOrDefaultAsync(x=>x.Name == model.Name);
+                var user = await _userRepository.GetAll().FirstOrDefaultAsync(x => x.Name == model.Name);
                 if (user == null)
                 {
                     return new BaseResponse<ClaimsIdentity>()
                     {
-                        Description = "Пользовательне найден"
+                        Description = "Пользовательне не найден"
                     };
                 }
                 if (user.Password != Hach_md5.HashPassword(model.Password))
@@ -62,8 +57,8 @@ namespace AutoMarket.Service.Implementations
         {
             try
             {
-                var user = await _userRepository.GetAll().FirstOrDefaultAsync(x=>x.Name == model.Name);
-                if(user != null)
+                var user = await _userRepository.GetAll().FirstOrDefaultAsync(x => x.Name == model.Name);
+                if (user != null)
                 {
                     return new BaseResponse<ClaimsIdentity>()
                     {
