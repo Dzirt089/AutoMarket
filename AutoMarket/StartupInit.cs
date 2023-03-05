@@ -18,6 +18,7 @@ namespace AutoMarket
         {
             services.AddScoped<ICarService, CarService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAccountService, AccountService>();
         }
     }
 }
