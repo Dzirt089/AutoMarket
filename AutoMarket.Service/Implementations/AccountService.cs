@@ -12,12 +12,10 @@ namespace AutoMarket.Service.Implementations
 {
     public class AccountService : IAccountService
     {
-        private readonly IAccountService _accountService;
         private readonly IBaseRepository<User> _userRepository;
 
-        public AccountService(IAccountService accountService, IBaseRepository<User> userRepository)
+        public AccountService( IBaseRepository<User> userRepository)
         {
-            _accountService = accountService;
             _userRepository = userRepository;
         }
 
