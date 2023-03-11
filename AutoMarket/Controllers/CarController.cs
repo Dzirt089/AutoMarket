@@ -1,4 +1,5 @@
-﻿using AutoMarket.Domain.ViewModel.Car;
+﻿using AutoMarket.Domain.Filter;
+using AutoMarket.Domain.ViewModel.Car;
 using AutoMarket.Service.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace AutoMarket.Controllers
 {
+    [Authorize]
+    [FeatureEnabled(IsEnabled = true)]
     public class CarController : Controller
     {
         private readonly ICarService _carService;
@@ -39,6 +42,8 @@ namespace AutoMarket.Controllers
             }
             return RedirectToAction("Error");
         }
+
+
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -89,6 +94,7 @@ namespace AutoMarket.Controllers
             }
             return RedirectToAction("GetCars");
         }
+
 
         [HttpPost]
         public JsonResult GetTypes()
