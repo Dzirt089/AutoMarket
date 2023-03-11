@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace AutoMarket.Domain.Filter
 {
+    /// <summary>
+    /// В этом примере, если данная функция IsEnabled
+    ///не активирована, вы прервете выполнение оставшегося конвейера,
+    ///вернув BadRequestResult, который вернет клиенту ошибку 400
+    /// </summary>
     public class FeatureEnabledAttribute : Attribute, IResourceFilter
     {
         /// <summary>
@@ -18,6 +23,7 @@ namespace AutoMarket.Domain.Filter
 
         /// <summary>
         /// Если функция IsEnabled не активирована, то прерываем выполнение конвеера, задав свойство context.Result
+        /// *Executing, который  вызывается перед привязкой модели
         /// </summary>
         /// <param name="context"></param>
         public void OnResourceExecuting(ResourceExecutingContext context)
@@ -31,6 +37,7 @@ namespace AutoMarket.Domain.Filter
 
         /// <summary>
         /// Должен быть реализован для удовлетворения IResourceFilter, нов данном случае он не требуется
+        /// и *Executed, который вызывается после выполнения результата.
         /// </summary>
         /// <param name="context"></param>
         /// <exception cref="NotImplementedException"></exception>
