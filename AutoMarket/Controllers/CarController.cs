@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace AutoMarket.Controllers
 {
-    [Authorize]
-    [FeatureEnabled(IsEnabled = true)]
+    [Authorize, FeatureEnabled(IsEnabled = true), ValidateModel]
     public class CarController : Controller
     {
         private readonly ICarService _carService;
@@ -55,7 +54,7 @@ namespace AutoMarket.Controllers
             return RedirectToAction("Error");
         }
 
-        
+
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Save(int id)
@@ -65,7 +64,7 @@ namespace AutoMarket.Controllers
                 return View();
             }
             var response = await _carService.GetCar(id);
-            if(response.StatusCode == Domain.Enum.StatusCode.OK)
+            if (response.StatusCode == Domain.Enum.StatusCode.OK)
             {
                 return View(response.Data);
             }
@@ -73,25 +72,24 @@ namespace AutoMarket.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Save (CarViewModel model)
+        public async Task<IActionResult> Save(CarViewModel model)
         {
             ModelState.Remove("DataCreate");
-            if (ModelState.IsValid)
+
+            if (model.Id == 0)
             {
-                if (model.Id == 0)
+                byte[] imageData;
+                using (var binaryReader = new BinaryReader(model.Avatar.OpenReadStream()))
                 {
-                    byte[] imageData;
-                    using (var binaryReader = new BinaryReader(model.Avatar.OpenReadStream()))
-                    {
-                        imageData = binaryReader.ReadBytes((int)model.Avatar.Length);
-                    }
-                        await _carService.CreateCar(model,imageData);
+                    imageData = binaryReader.ReadBytes((int)model.Avatar.Length);
                 }
-                else
-                {
-                    await _carService.Edit(model.Id,model);
-                }
+                await _carService.CreateCar(model, imageData);
             }
+            else
+            {
+                await _carService.Edit(model.Id, model);
+            }
+
             return RedirectToAction("GetCars");
         }
 
