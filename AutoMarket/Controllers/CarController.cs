@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AutoMarket.Controllers
 {
-    [ValidateModel, FeatureEnabled(IsEnabled = true)]
+    [ValidateModel, HandleException, FeatureEnabled(IsEnabled = true)]
     public class CarController : Controller
     {
         private readonly ICarService _carService;
@@ -23,23 +23,15 @@ namespace AutoMarket.Controllers
         public async Task<IActionResult> GetCars()
         {
             var response = await _carService.GetCars();
-            if (response.StatusCode == Domain.Enum.StatusCode.OK)
-            {
-                return View(response.Data.ToList());
-            }
-
-            return RedirectToAction("Error");
+            return View(response.Data.ToList());
+            
         }
 
         [HttpGet]
         public async Task<IActionResult> GetCar(int id)
         {
             var response = await _carService.GetCar(id);
-            if (response.StatusCode == Domain.Enum.StatusCode.OK)
-            {
-                return View(response.Data);
-            }
-            return RedirectToAction("Error");
+            return View(response.Data);
         }
 
 
@@ -47,11 +39,7 @@ namespace AutoMarket.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var response = await _carService.DeleteCar(id);
-            if (response.StatusCode == Domain.Enum.StatusCode.OK)
-            {
-                return RedirectToAction("GetCars");
-            }
-            return RedirectToAction("Error");
+            return RedirectToAction("GetCars");
         }
 
 
@@ -60,15 +48,10 @@ namespace AutoMarket.Controllers
         public async Task<IActionResult> Save(int id)
         {
             if (id == 0)
-            {
                 return View();
-            }
+            
             var response = await _carService.GetCar(id);
-            if (response.StatusCode == Domain.Enum.StatusCode.OK)
-            {
-                return View(response.Data);
-            }
-            return RedirectToAction("Error");
+            return View(response.Data);
         }
 
         [HttpPost]
@@ -100,6 +83,5 @@ namespace AutoMarket.Controllers
             var types = _carService.GetTypes();
             return Json(types);
         }
-
     }
 }
