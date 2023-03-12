@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AutoMarket.Controllers
 {
-    [Authorize, FeatureEnabled(IsEnabled = true), ValidateModel]
+    [ValidateModel, FeatureEnabled(IsEnabled = true)]
     public class CarController : Controller
     {
         private readonly ICarService _carService;
