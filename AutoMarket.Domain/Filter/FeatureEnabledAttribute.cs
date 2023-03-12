@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AutoMarket.Domain.Filter
 {
@@ -41,10 +37,7 @@ namespace AutoMarket.Domain.Filter
         /// </summary>
         /// <param name="context"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void OnResourceExecuted(ResourceExecutedContext context)
-        {
-            throw new NotImplementedException();
-        }
+        public void OnResourceExecuted(ResourceExecutedContext context) { }
     }
 
 
