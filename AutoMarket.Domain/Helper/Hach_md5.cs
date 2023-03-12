@@ -13,12 +13,11 @@ namespace AutoMarket.Services
         /// <returns></returns>
         public static string HashPasswordMD5(string password)
         {
-            MD5 md5 = MD5.Create();
             byte[] b = Encoding.ASCII.GetBytes(password);
-            byte[] hash= md5.ComputeHash(b);
+            byte[] hash = MD5.HashData(b);
 
-            StringBuilder stringBuilder= new StringBuilder();
-            foreach(var sb in hash)
+            StringBuilder stringBuilder = new();
+            foreach (var sb in hash)
             {
                 stringBuilder.Append(sb.ToString("X2"));
             }
@@ -33,13 +32,10 @@ namespace AutoMarket.Services
         /// <returns></returns>
         public static string HashPassword(string password)
         {
-            using(var sha256 = SHA256.Create())
-            {
-                var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                var hash = BitConverter.ToString(hashedBytes).Replace("-","").ToLower();
+            var hashedBytes = SHA256.HashData(Encoding.UTF8.GetBytes(password));
+            var hash = BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
 
-                return hash;
-            }
+            return hash;
         }
 
 
